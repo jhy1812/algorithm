@@ -10,10 +10,10 @@ for i in range(N):
         for k in range(y1, y1+n):
             arr[k][j] = i + 1
 
-for i in range(N):
-    cnt = 0
-    for j in range(1001):
-        for k in range(1001):
-            if arr[j][k] == i+1:
-                cnt += 1
-    print(cnt)
+bucket = [0]*(N+1)
+
+for j in range(1001):
+    for k in range(1001):
+        bucket[arr[j][k]] += 1
+for i in range(1, N+1):
+    print(bucket[i])
