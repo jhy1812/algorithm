@@ -2,7 +2,7 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-arr = [[0 for _ in range(1001)] for _ in range(1001)]
+arr = [[0]*1001 for _ in range(1001)]
 
 for i in range(N):
     x1, y1, m, n = [*map(int, input().split())]
