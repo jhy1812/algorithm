@@ -3,7 +3,6 @@ from collections import deque
 input = sys.stdin.readline
 
 def bfs(v, cnt, team, sum):
-    global flag
     visited = [0]*(N+1)
     queue = deque()
     queue.append(v)
@@ -33,11 +32,10 @@ ccc = 0
 for i in range(1, N+1):
     n, *arr[i] = [*map(int, input().split())]
 for i in range(1<<N):
-    flag = 0
-    cnt = 0
-    start1 = 0
+    cnt = 0         # 1번 지역구 개수
+    start1 = 0      # 1번 지역구 탐색 시작할 번호 저장할 변수
     for j in range(N):
-        if i & (1<<j):
+        if i & (1<<j):          # 지역구가 나눠지는 모든 경우의 수
             check[j+1] = 1
             start1 = j + 1
             cnt += 1
