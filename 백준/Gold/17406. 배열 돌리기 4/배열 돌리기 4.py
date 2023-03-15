@@ -9,7 +9,7 @@ def rot(y, x, s, mapp):
     for i in range(1, s+1):
         start_y = y + dy[3]*i
         start_x = x + dx[2]*i
-        tmp = copy.deepcopy(mapp[start_y][start_x])
+        tmp = mapp[start_y][start_x]
         dir = 0
         while 1:
             ny = start_y + dy[dir]
@@ -19,10 +19,10 @@ def rot(y, x, s, mapp):
                 ny = start_y + dy[dir]
                 nx = start_x + dx[dir]
             if ny == y + dy[3]*i and nx == x + dx[2]*i:
-                mapp[start_y][start_x] = copy.deepcopy(tmp)
+                mapp[start_y][start_x] = tmp
                 break
             else:
-                mapp[start_y][start_x] = copy.deepcopy(mapp[ny][nx])
+                mapp[start_y][start_x] = mapp[ny][nx]
             start_y = ny
             start_x = nx
     return mapp
