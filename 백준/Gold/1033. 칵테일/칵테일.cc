@@ -6,22 +6,23 @@
 
 using namespace std;
 
-long long N, a, b, p, q;
-vector<long long>arr(10, -1);
+int N, a, b;
+long long int p, q;
+vector<int>arr(10, -1);
 vector<long long>result(10, 1);
 
-int findboss(long long a) {
+int findboss(int a) {
 	if (arr[a] == -1) {
 		return a;
 	}
-	long long ret = findboss(arr[a]);
+	int ret = findboss(arr[a]);
 	arr[a] = ret;
 	return ret;
 }
 
-void setunion(long long a, long long b) {
-	long long fa = findboss(a);
-	long long fb = findboss(b);
+void setunion(int a, int b) {
+	int fa = findboss(a);
+	int fb = findboss(b);
 	if (fa == fb) {
 		return;
 	}
@@ -34,7 +35,7 @@ long long hoje(long long a, long long b) {
 			return b;
 		}
 		else {
-			int tmp = a;
+			long long tmp = a;
 			a = b;
 			b = tmp % b;
 		}
@@ -54,8 +55,8 @@ int main()
 		long long tmp = hoje(p, q);
 		p = p / tmp;
 		q = q / tmp;
-		long long aboss = findboss(a);
-		long long bboss = findboss(b);
+		int aboss = findboss(a);
+		int bboss = findboss(b);
 		p *= (result[b] / (hoje(result[a], result[b])));
 		q *= (result[a] / (hoje(result[a], result[b])));
 		long long agcd = hoje(p, q);
