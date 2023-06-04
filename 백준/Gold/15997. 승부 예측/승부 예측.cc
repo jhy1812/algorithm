@@ -17,7 +17,6 @@ struct game
 
 int n = 4;
 
-map<string, int>team;
 map<string, double>result;
 map<string, int>score;
 map<int, string>tnum;
@@ -70,7 +69,7 @@ void simul_game(int lv, double perc) {
 		}
 		else {
 			for (int i = 0; i < g1; i++) {
-				result[tnum[gs1[i]]] = result[tnum[gs1[i]]] + (double)(2*perc/g1);
+				result[tnum[gs1[i]]] = result[tnum[gs1[i]]] + (double)(2 * perc / g1);
 			}
 		}
 		for (int i = 0; i < g2; i++) {
@@ -81,19 +80,19 @@ void simul_game(int lv, double perc) {
 	for (int i = 0; i < 3; i++) {
 		if (i == 0) {
 			score[games[lv].t1] += 3;
-			simul_game(lv + 1, perc*games[lv].win1);
+			simul_game(lv + 1, perc * games[lv].win1);
 			score[games[lv].t1] -= 3;
 		}
 		else if (i == 1) {
 			score[games[lv].t1] += 1;
 			score[games[lv].t2] += 1;
-			simul_game(lv + 1, perc*games[lv].draw);
+			simul_game(lv + 1, perc * games[lv].draw);
 			score[games[lv].t1] -= 1;
 			score[games[lv].t2] -= 1;
 		}
 		else {
 			score[games[lv].t2] += 3;
-			simul_game(lv + 1, perc*games[lv].win2);
+			simul_game(lv + 1, perc * games[lv].win2);
 			score[games[lv].t2] -= 3;
 		}
 	}
@@ -108,7 +107,6 @@ int main()
 	for (int i = 0; i < n; i++) {
 		string tmp;
 		cin >> tmp;
-		team.insert(pair<string, int>(tmp, i));
 		score.insert(pair<string, int>(tmp, 0));
 		tnum.insert(pair<int, string>(i, tmp));
 	}
