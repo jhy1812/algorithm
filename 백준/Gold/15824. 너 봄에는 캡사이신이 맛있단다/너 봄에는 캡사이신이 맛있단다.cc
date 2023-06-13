@@ -5,7 +5,7 @@
 
 #define MOD 1000000007
 
-int N;
+long long N;
 long long result;
 std::vector<int>arr;
 
@@ -25,20 +25,35 @@ int main()
 
 	sort(arr.begin(), arr.end());
 
-	for (int i = 1; i < N; i++) {
-		for (int j = 0; j < i; j++) {
-			int p = i - j - 1;
-			long long cha = arr[i] - arr[j];
-			long long mull = 2;
-			while (p > 0) {
-				if (p % 2 == 1) {
-					cha = (cha * mull) % MOD;
-				}
-				p = p / 2;
-				mull = (mull * mull) % MOD;
+	for (int i = 0; i < N; i++) {
+		long long tmp = 1;
+		long long mull = 2;
+		int pp = i;
+		int pm = N - i - 1;
+		while (pp > 0) {
+			if (pp % 2 == 1) {
+				tmp = (tmp * mull) % MOD;
 			}
-			result = (result + cha) % MOD;
+			pp = pp / 2;
+			mull = (mull * mull) % MOD;
 		}
+		tmp -= 1;
+		mull = 2;
+		long long ttmp = 1;
+		while (pm > 0) {
+			if (pm % 2 == 1) {
+				ttmp = (ttmp * mull) % MOD;
+			}
+			pm = pm / 2;
+			mull = (mull * mull) % MOD;
+		}
+		ttmp -= 1;
+		tmp = (tmp - ttmp) % MOD;
+		if (tmp < 0) {
+			tmp += MOD;
+		}
+		result += (arr[i] * tmp) % MOD;
+		result = result % MOD;
 	}
 
 	std::cout << result;

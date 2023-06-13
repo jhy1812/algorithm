@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 2160 KB, 시간: 200 ms
+메모리: 5224 KB, 시간: 104 ms
 
 ### 분류
 
@@ -16,7 +16,7 @@
 
 <p>'스코빌 지수'란 고추류가 가진 매운맛의 원인인 캡사이신의 농도를 수치화 한 단위이다. 주헌이가 느끼는 매운 정도는 굉장히 독특한데, 먹고 있는 메뉴의 절대 수치가 아닌 음식과의 상대수치에 기반한다. 예를 들어 [5, 2, 8]의 스코빌 지수를 가진 음식을 먹을 때 주헌이가 느끼는 매운 정도는 가장 높은 수치인 8과 가장 낮은 수치인 2의 차이인 6만큼의 매운맛을 느낀다. 이처럼 메뉴들의 스코빌 지수가 있을 때 그 최댓값과 최솟값의 차이를 "주헌고통지수"라고 정의한다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/15824/1.png" style="width: 224px; height: 118px;"></p>
+<p style="text-align: center;"><img alt="" src="" style="width: 224px; height: 118px;"></p>
 
 <p style="text-align: center;">그림1. 고추처럼 보이지만 문제와는 무관합니다. </p>
 
