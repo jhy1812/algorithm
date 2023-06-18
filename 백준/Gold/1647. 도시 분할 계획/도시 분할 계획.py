@@ -26,11 +26,12 @@ for i in range(M):
 lst = sorted(lst, key=lambda x:x[2])
 
 for i in lst:
+    if cnt == N-2:
+        break
     if findboss(i[0]) != findboss(i[1]):
         cost += i[2]
         cnt += 1
         union(i[0], i[1])
-    if cnt == N-2:
-        break
+
 
 print(cost)
