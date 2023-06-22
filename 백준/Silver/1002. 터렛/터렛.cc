@@ -18,7 +18,7 @@ int main()
 		int d = (x1 - x2) * (x1 - x2) + (y - y2) * (y - y2);
 		int summ = (r1 + r2) * (r1 + r2);
 		int diff = (r1 - r2) * (r1 - r2);
-		if (x1 == x2 && y == y2 && r1 == r2) {
+		if (x1 == x2 && y == y2 && r1 == r2 && r1 != 0) {
 			std::cout << -1 << "\n";
 		}
 		else if (d > summ) {
