@@ -2,9 +2,6 @@
 #include <string>
 #include <vector>
 
-int dy[4] = { 0, 1, 0, -1 };
-int dx[4] = { 1, 0, -1, 0 };
-
 int T, n;
 
 void rot(char& b1, char& b2, char& b3, char& b4) {
