@@ -1,12 +1,11 @@
 def solution(A,B):
+    
     answer = 0
-
+    
     A.sort()
-    B.sort()
+    B.sort(reverse=True)
     
-    l = len(A)
-    
-    for i in range(l):
-        answer += A[i]*B[l-i-1]
-    
+    for i in range(len(A)) :
+        answer += (A[i] * B[i])
+        
     return answer
