@@ -80,8 +80,7 @@ int main()
 	std::sort(path.begin(), path.end(), cmp);
 
 	for (int i = 0; i < path.size(); i++) {
-		if (findboss(path[i].a) != findboss(path[i].b)) {
-			uni(path[i].a, path[i].b);
+		if (uni(path[i].a, path[i].b)) {
 			cnt++;
 			result += path[i].dis;
 		}
