@@ -10,7 +10,7 @@ public class Main {
         int[] dp = new int[X + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[X] = 0;
-
+        
         for (int i = X; i >= 1; i--) {
             if (i % 3 == 0) {
                 dp[i / 3] = Math.min(dp[i / 3], dp[i] + 1);
