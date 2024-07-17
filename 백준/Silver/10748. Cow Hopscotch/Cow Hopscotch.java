@@ -45,8 +45,7 @@ public class Main {
         for (int i = y + 1; i < R; i++) {
             for (int j = x + 1; j < C; j++) {
                 if (arr[y][x] != arr[i][j]) {
-                    visited[y][x] += dfs(i, j);
-                    visited[y][x] %= MOD;
+                    visited[y][x] = (visited[y][x] + dfs(i, j)) % MOD;
                 }
             }
         }
