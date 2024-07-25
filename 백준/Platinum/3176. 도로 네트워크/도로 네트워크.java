@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
 
         N = Integer.parseInt(br.readLine());
@@ -49,8 +50,11 @@ public class Main {
             mn = Integer.MAX_VALUE;
             solve(s, e);
 
-            System.out.println(mn + " " + mx);
+            bw.write(mn + " " + mx + "\n");
         }
+        br.close();
+        bw.flush();
+        bw.close();
     }
 
     static private void dfs(int lv, int cur, int parent, int dis) {
