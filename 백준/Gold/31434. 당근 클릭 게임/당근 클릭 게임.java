@@ -24,37 +24,39 @@ public class Main {
             click[i] = new Pair(A, B);
         }
 
+        for (int i = 0; i <= K; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+
+        dp[0][1] = 0;
+
         Arrays.sort(click);
 
-        dfs(0, 1);
+        for (int i = 0; i < K; i++) {
+            for (int j = 1; j <= 5000; j++) {
+                if (dp[i][j] == -1) continue;
+                
+                dp[i+1][j] = Math.max(dp[i+1][j], dp[i][j] + j);
 
-        System.out.print(result);
-    }
+                for (Pair p : click) {
+                    int A = p.getA();
+                    int B = p.getB();
 
-    public static void dfs(int lv, int s) {
-        if (lv == K) {
-            result = Math.max(result, dp[lv][s]);
-            return;
-        }
-        for (int i = 0; i <= N; i++) {
-            if (i == 0) {
-                if (dp[lv+1][s] < dp[lv][s]+s || dp[lv+1][s] == 0) {
-                    dp[lv+1][s] = dp[lv][s]+s;
-                    dfs(lv+1, s);
-                }
-            }
-            else {
-                if (click[i-1].getA() <= dp[lv][s]) {
-                    if (dp[lv+1][s+click[i-1].getB()] < dp[lv][s]-click[i-1].getA() || dp[lv+1][s+click[i-1].getB()] == 0) {
-                        dp[lv+1][s+click[i-1].getB()] = dp[lv][s]-click[i-1].getA();
-                        dfs(lv+1, s+click[i-1].getB());
+                    if (dp[i][j] >= A && j+B <= 5000) {
+                        dp[i+1][j+B] = Math.max(dp[i+1][j+B], dp[i][j] - A);
+                    }
+                    else {
+                        break;
                     }
                 }
-                else {
-                    break;
-                }
             }
         }
+
+        for (int i = 1; i <= 5000; i++) {
+            result = Math.max(result, dp[K][i]);
+        }
+
+        System.out.print(result);
     }
 }
 
