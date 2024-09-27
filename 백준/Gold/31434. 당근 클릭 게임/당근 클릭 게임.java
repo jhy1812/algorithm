@@ -2,45 +2,89 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
-        int N = sc.nextInt();
-        int K = sc.nextInt();
-        int carrot = 0;
-        int sec = 0;
-        int[] cost = new int[N + 1];
-        int[] speed = new int[N + 1];
+    public static int N, K, result;
+    public static Pair[] click;
+    public static int[][] dp;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        for (int i = 1; i <= N; i++) {
-            int tmp = sc.nextInt();
-            cost[i] = tmp;
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+        result = 0;
+
+        click = new Pair[N];
+        dp = new int[K+1][5001];
+
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+            click[i] = new Pair(A, B);
         }
 
-        for (int i = 1; i <= N; i++) {
-            int tmp = sc.nextInt();
-            speed[i] = tmp;
-        }
+        Arrays.sort(click);
 
-        int[][] dp = new int[K + 1][N + 1];
-        int[][] s = new int[K + 1][N + 1];
-        dp[1][0] = 1;
-        s[1][0] = 1;
-        carrot = K;
-        for (int i = 2; i <= K; i++) {
-            for (int j = 0; j <= N; j++) {
-                for (int k = 0; k <= N; k++) {
-                    if (cost[j] <= dp[i - 1][k]) {
-                        if (dp[i - 1][k] + (K - i) * s[i - 1][k] <= dp[i - 1][k] - cost[j] + (K - i) * (s[i - 1][k] + speed[j])) {
-                            s[i][j] = s[i - 1][k] + speed[j];
-                            dp[i][j] = dp[i - 1][k] - cost[j];
-                            carrot = Math.max(carrot, dp[i - 1][k] - cost[j] + (K - i) * (s[i - 1][k] + speed[j]));
-                        }
+        dfs(0, 1);
+
+        System.out.print(result);
+    }
+
+    public static void dfs(int lv, int s) {
+        if (lv == K) {
+            result = Math.max(result, dp[lv][s]);
+            return;
+        }
+        for (int i = 0; i <= N; i++) {
+            if (i == 0) {
+                if (dp[lv+1][s] < dp[lv][s]+s || dp[lv+1][s] == 0) {
+                    dp[lv+1][s] = dp[lv][s]+s;
+                    dfs(lv+1, s);
+                }
+            }
+            else {
+                if (click[i-1].getA() <= dp[lv][s]) {
+                    if (dp[lv+1][s+click[i-1].getB()] < dp[lv][s]-click[i-1].getA() || dp[lv+1][s+click[i-1].getB()] == 0) {
+                        dp[lv+1][s+click[i-1].getB()] = dp[lv][s]-click[i-1].getA();
+                        dfs(lv+1, s+click[i-1].getB());
                     }
+                }
+                else {
+                    break;
                 }
             }
         }
+    }
+}
 
-        System.out.print(carrot);
+class Pair implements Comparable<Pair>{
+    private int a;
+    private int b;
+
+    public Pair(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public int getA() {
+        return this.a;
+    }
+
+    public int getB() {
+        return this.b;
+    }
+
+    @Override
+    public int compareTo(Pair p) {
+        if (this.a > p.getA()) {
+            return 1;
+        }
+        else if (this.a == p.getA()) {
+            if (this.b < p.getB()) {
+                return 1;
+            }
+        }
+        return -1;
     }
 }
