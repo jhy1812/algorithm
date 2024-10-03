@@ -100,7 +100,9 @@ public class Main {
             int yy = now.getY();
             int xx = now.getX();
             int dd = now.getD();
-
+            
+            if (yy == 0 && xx == 0) return;
+            
             for (int i = 0; i < 4; i++) {
                 int ny = yy + dy[i];
                 int nx = xx + dx[i];
