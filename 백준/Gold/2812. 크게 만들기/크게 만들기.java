@@ -47,9 +47,9 @@ public class Main {
         StringBuilder result = new StringBuilder();
 
         while (!s.isEmpty()) {
-            result.insert(0, s.pop().toString());
+            result.append(s.pop().toString());
         }
 
-        System.out.print(result);
+        System.out.print(result.reverse());
     }
 }
